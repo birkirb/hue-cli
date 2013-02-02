@@ -5,20 +5,19 @@ module Hue
       public
 
       def initialize
-        @bridge = Hue::CLI.bridge
-        @methods = self.class.instance_methods(false).inject(Hash.new(false)) do |hash, method_name|
-          hash[method_name] = true
-          hash
-        end
-        @methods[:execute] = false
-        # puts "#{self.class.name} : #{@methods.inspect}"
+        set_bridge
+        parse_methods
       end
 
       def execute(*args)
-        @bridge.print_state
+        if args.size > 0
+          send_method(*args)
+        else
+          @bridge.print_state
+        end
       end
 
-      protected
+      private
 
       attr_reader :bridge
 
@@ -31,10 +30,27 @@ module Hue
           raise Error.new("Action '#{method_name.to_s}' is not available for operation '#{name}'")
       end
 
-      private
-
       def name
         self.class.name.gsub(/.*\:\:/, '').downcase
+      end
+
+      def set_bridge
+        @bridge = Hue::CLI.bridge
+      end
+
+      def parse_methods
+        @methods = self.class.instance_methods(false).inject(Hash.new(false)) do |hash, method_name|
+          hash[method_name] = true
+          hash
+        end
+        @methods[:execute] = false
+      end
+
+      def send_method(*args)
+        method = args.shift.to_sym
+        if is_available!(method)
+          send(method, *args)
+        end
       end
 
     end

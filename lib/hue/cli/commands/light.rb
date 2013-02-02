@@ -18,10 +18,7 @@ module Hue
           # bulb exists (is valid?)
 
           if args.size > 0
-            method = args.shift.to_sym
-            if is_available!(method)
-              send(method, *args)
-            end
+            super(*args)
           else
             bulb.print_state
           end
