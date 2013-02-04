@@ -50,6 +50,10 @@ module Hue
           bulb.solid
         end
 
+        def color(*args)
+          bulb.color = Colors.parse(*args)
+        end
+
       end
     end
   end
