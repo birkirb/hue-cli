@@ -10,19 +10,21 @@ To begin using, install the ruby gem (this requires ruby 1.9 and rubygems)
 $ gem install hue-cli
 ```
 
+This will install the "hue" command.
+
 # Usage
 
-This install the hue command. Simply type 
+To check the bridge state, simply type 
 
 ```
 $ hue
 ```
 
-and the bridge state will be verified. Follow the instructions to register the application with your bridge.
+If this is the first time the command is run, it will scan for bridges on the network and attempt to register the application. Follow the on-screen instructions to do so.
 
 ## Register
 
-You can explicity register the application with
+You can also explicity register the application with
 
 ```
 $ hue register
@@ -30,7 +32,7 @@ $ hue register
 
 ## Bridge state
 
-Examine the current state of the bridge
+Once registered, examine the current state of the bridge.
 
 ```
 $ hue
@@ -64,7 +66,7 @@ Color: Temperature=2012°K (497 mired), RGB≈[255, 136, 13]
 
 ## Change Light state
 
-Change a single lights state with the follow (rather self-explanatory) commands
+Change a single light state with the follow (rather self-explanatory) commands
 
 ```
 $ hue 1 on
@@ -74,9 +76,10 @@ $ hue 1 blink
 $ hue 1 solid
 ```
 
-### Light brightness
+### Brightness
 
-The lights brightness command takes a value (0-255) or percentage (0%-100%)
+Brightness can be set with a value (0-255) or percentage (0%-100%)
+
 ```
 $ hue 1 brightness 200
 $ hue 1 brightness 50%
@@ -86,17 +89,21 @@ Brightness: 128 (50%)
 Color: Temperature=2012°K (497 mired), RGB≈[255, 136, 13]
 ```
 
-### Light color
+### Color
 
-The lights color command takes 1-3 arguments, each interpreted depending on range and value.
+The color command takes 1-3 arguments, each interpreted depending on range and value.
+
+Set to 6500 Kelvin.
 
 ```
-$ hue 1 color 6500
+$ hue 1 color 6500 
 $ hue 1
 Living Overhead: ON
 Brightness: 128 (50%)
 Color: Temperature=6500°K (153 mired), RGB≈[255, 254, 250]
 ```
+
+Set to 240 mired.
 
 ```
 $ hue 1 color 240
@@ -105,6 +112,8 @@ Living Overhead: ON
 Brightness: 128 (50%)
 Color: Temperature=4167°K (240 mired), RGB≈[255, 208, 170]
 ```
+
+Set the hue and saturation.
 
 ```
 $ hue 1 color 30000 255
