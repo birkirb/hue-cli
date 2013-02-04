@@ -7,8 +7,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Birkir A. Barkarson", ""]
   s.email       = ["birkirb@stoicviking.net"]
   s.homepage    = "https://github.com/birkirb/hue-lib"
-  s.summary     = %q{Command line interface for controlling Phillips Hue light bridge.}
-  s.description = s.summary
+  s.summary     = %q{Command line interface for controlling Philips Hue system's lights and bridge.}
+  s.description = %q{CLI that allows simple printing of bridge and light state, with easy-to-use syntax to manipulate state}
 
   s.rubyforge_project = "hue-cli"
 
@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_runtime_dependency("json")
-  s.add_runtime_dependency("hue-lib")
+  s.add_runtime_dependency("hue-lib", '>= 0.7.0')
   s.add_development_dependency("rspec", '>= 2.6.0')
   s.add_development_dependency("mocha", '>= 0.9.0')
   s.add_development_dependency("webmock", '>= 1.8.0')
