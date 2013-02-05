@@ -54,6 +54,11 @@ module Hue
           bulb.color = Colors.parse(*args)
         end
 
+        def name(*args)
+          name = args.join(' ')
+          bulb.name = name
+        end
+
       end
     end
   end
