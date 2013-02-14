@@ -29,9 +29,13 @@ namespace :gem do
   end
 
   task :install do
-    gem = `ls pkg`
-    `gem install pkg/#{gem}`
+    gem = `ls pkg`.split.sort
+    `gem install pkg/#{gem.last}`
   end
+end
+
+task :clean do
+  `rm -rf pkg`
 end
 
 task :default => [:spec]
