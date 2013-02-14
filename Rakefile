@@ -16,4 +16,22 @@ rescue LoadError
   end
 end
 
+namespace :gem do
+  task :build do
+    `mkdir -p pkg`
+    `gem build hue-cli.gemspec`
+    `mv *.gem pkg/`
+  end
+
+  task :publish do
+    gem = `ls pkg`
+    # `gem push pkg/#{gem}`
+  end
+
+  task :install do
+    gem = `ls pkg`
+    `gem install pkg/#{gem}`
+  end
+end
+
 task :default => [:spec]
