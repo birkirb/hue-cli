@@ -1,14 +1,21 @@
+require_relative '../../utilities/indentation'
+
 module Hue
   class Bulb
+    include Indentation
 
     def print_state
-      puts "#{self.name}: #{self.on? ? 'ON' : 'OFF'}"
-      puts "Brightness: #{self.brightness} (#{(self.brightness_percent).to_i}%)"
-      print "Color: "
-      print self.color.to_s
-      puts ", #{self.color.to_rgb.to_s}"
-      if blinking?
-        puts "Alert: Blinking!"
+      spaces = 4
+      puts "#{self.id}.".ljust(spaces) + "#{self.name}: #{self.on? ? 'ON' : 'OFF'}"
+      indent(spaces) do
+        puts "Brightness: #{self.brightness} (#{(self.brightness_percent).to_i}%)"
+        puts "Color: #{self.color}, #{self.color.to_rgb}"
+        transitory_state = [
+          (self.transition_time > 0 ? "Transition time: #{self.transition_time} sec" : nil),
+          (self.blinking? ? 'Alert: Blinking!' : nil),
+          (self.effect? ? "Effect: #{self.effect}" : nil),
+        ].compact
+        puts transitory_state.join(", ") unless transitory_state.empty?
       end
     end
 
