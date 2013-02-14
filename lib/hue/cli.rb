@@ -36,8 +36,8 @@ module Hue
 
     def self.print_default
       Command.new.execute
-    rescue Hue::Error => err
-      puts "Failed to initialize bridge."
+    rescue Hue::Config::NotFound => err
+      puts "Application not registered."
       if bridges = Hue.register_bridges
         puts "Found bridges:"
         bridges.each do |key, config|
