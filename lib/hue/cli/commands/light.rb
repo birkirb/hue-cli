@@ -59,6 +59,30 @@ module Hue
           bulb.name = name
         end
 
+        def action(*args)
+          bulb.effect = args.join
+        end
+
+        def effect(*args)
+          bulb.effect = args.join
+        end
+
+        def colorloop(*args)
+          bulb.colorloop
+        end
+
+        def clear(*args)
+          case args.first
+          when 'effect'
+            bulb.clear_effect
+          when 'action'
+            bulb.solid
+          else
+            bulb.clear_effect
+            bulb.solid
+          end
+        end
+
       end
     end
   end
