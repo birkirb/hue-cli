@@ -83,6 +83,10 @@ module Hue
           end
         end
 
+        def dump(*args)
+          puts bulb.state.to_json
+        end
+
       end
     end
   end
