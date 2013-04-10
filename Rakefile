@@ -17,23 +17,27 @@ rescue LoadError
 end
 
 namespace :gem do
+  desc 'Build the gem'
   task :build do
     `mkdir -p pkg`
     `gem build hue-cli.gemspec`
     `mv *.gem pkg/`
   end
 
+  desc 'Publish the gem'
   task :publish do
     gem = `ls pkg`
     # `gem push pkg/#{gem}`
   end
 
+  desc 'Install the gem locally'
   task :install do
     gem = `ls pkg`.split.sort
     `gem install pkg/#{gem.last}`
   end
 end
 
+desc 'Remove generated files'
 task :clean do
   `rm -rf pkg`
 end
