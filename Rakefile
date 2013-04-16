@@ -25,13 +25,13 @@ namespace :gem do
   end
 
   desc 'Publish the gem'
-  task :publish do
+  task :publish => :build do
     gem = `ls pkg`
     # `gem push pkg/#{gem}`
   end
 
   desc 'Install the gem locally'
-  task :install do
+  task :install => :build do
     gem = `ls pkg`.split.sort
     `gem install pkg/#{gem.last}`
   end
