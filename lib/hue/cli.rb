@@ -9,6 +9,8 @@ module Hue
   module CLI
     class Error < StandardError; end;
 
+    ERROR_BRIDGE_CONNECTION_PROBLEM = /execution expired|No route to host/
+
     def self.bridge
       Hue.application
     end
@@ -27,7 +29,13 @@ module Hue
         print_default
       end
     rescue Hue::Error => err
-      puts err.message
+      if ERROR_BRIDGE_CONNECTION_PROBLEM.match(err.message)
+        Hue.logger.warn("Error contacting bridge, verifying IP and trying again.")
+        Hue.register_bridges
+        retry
+      else
+        puts err.message
+      end
     rescue Hue::CLI::Error => err
       puts err.message
     end
