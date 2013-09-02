@@ -5,7 +5,13 @@ module Hue
 
         def execute(*args)
           if args.size > 0
-            super
+            if is_available?(args.first)
+              send_method(*args)
+            else
+              bridge.lights.each do |number, name|
+                Light.new.execute(number, *args)
+              end
+            end
           else
             bridge.print_bulbs
           end

@@ -27,10 +27,10 @@ module Hue
 
       def is_available!(method_name)
         is_available?(method_name) or
-          raise Error.new("Action '#{method_name.to_s}' is not available for operation '#{name}'")
+          raise Error.new("Action '#{method_name.to_s}' is not available for operation '#{class_name}'")
       end
 
-      def name
+      def class_name
         self.class.name.gsub(/.*\:\:/, '').downcase
       end
 
