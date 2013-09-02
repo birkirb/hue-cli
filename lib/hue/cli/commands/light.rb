@@ -18,7 +18,13 @@ module Hue
           # bulb exists (is valid?)
 
           if args.size > 0
-            super(*args)
+            if is_available?(args.first)
+              super(*args)
+            else
+              if _alias = Processors::LightStateAlias.new(args.join(' '))
+                bulb.state = _alias.state
+              end
+            end
           else
             bulb.print_state
           end

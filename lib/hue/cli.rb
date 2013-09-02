@@ -1,12 +1,17 @@
 require 'hue'
 require 'find'
-require_relative 'cli/command'
-require_relative 'extensions/bulb'
-require_relative 'extensions/bridge'
-require_relative 'extensions/hue'
 
 module Hue
   module CLI
+
+    LOCATION = File.expand_path(File.join(File.dirname(__FILE__), '..', '..'))
+
+    require_relative 'cli/command'
+    require_relative 'cli/processors/light_state_alias'
+    require_relative 'extensions/bulb'
+    require_relative 'extensions/bridge'
+    require_relative 'extensions/hue'
+
     class Error < StandardError; end;
 
     ERROR_BRIDGE_CONNECTION_PROBLEM = /execution expired|No route to host/
@@ -22,8 +27,10 @@ module Hue
         first_arg = args.shift
         if command = commands[first_arg.to_sym]
           command.new.execute(*args)
-        else
+        elsif first_arg.to_i > 0
           Commands::Light.new.execute(first_arg, *args)
+        else
+          raise Error.new("Unknown command: #{first_arg}")
         end
       else
         print_default
