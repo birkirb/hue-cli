@@ -26,8 +26,8 @@ namespace :gem do
 
   desc 'Publish the gem'
   task :publish => :build do
-    gem = `ls pkg`
-    # `gem push pkg/#{gem}`
+    gem = `ls pkg | sort | tail -n 1`
+    exec("gem push pkg/#{gem}")
   end
 
   desc 'Install the gem locally'
