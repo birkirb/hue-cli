@@ -1,0 +1,9 @@
+"relax": {"on":true,"bri":254,"ct":467,"alert":"none","effect":"none"}
+"energize": {"on":true,"bri":203,"ct":156,"alert":"none","effect":"none"}
+"reading": {"on":true,"bri":240,"ct":346,"alert":"none","effect":"none"}
+"concentrate": {"on":true,"bri":219,"ct":231,"alert":"none","effect":"none"}
+"red": {"on":true,"bri":254,"xy":[0.67,0.32],"alert":"none","effect":"none"}
+"blue": {"on":true,"bri":254,"xy":[0.17,0.04],"alert":"none","effect":"none"}
+"green": {"on":true,"bri":254,"xy":[0.41,0.52],"alert":"none","effect":"none"}
+"white": {"on":true,"bri":254,"xy":[0.31,0.33],"alert":"none","effect":"none"}
+"pink": {"on":true,"bri":254,"xy":[0.39,0.17],"alert":"none","effect":"none"}

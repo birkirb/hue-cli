@@ -1,5 +1,6 @@
 module Hue
   class Bridge
+    include Indentation
 
     def print_state
       state = self.status
@@ -23,6 +24,12 @@ module Hue
       puts "Lights:"
       state['lights'].each do |key, values|
         puts "  #{key}. #{values['name']} - #{values['state']['on'] ? 'ON' : 'OFF'}"
+      end
+    end
+
+    def print_bulbs
+      self.bulbs.each do |bulb|
+        bulb.print_state
       end
     end
 

@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_runtime_dependency("json")
-  s.add_runtime_dependency("hue-lib", '>= 0.7.0')
+  s.add_runtime_dependency("hue-lib", '>= 0.7.2')
   s.add_development_dependency("rspec", '>= 2.6.0')
   s.add_development_dependency("mocha", '>= 0.9.0')
   s.add_development_dependency("webmock", '>= 1.8.0')

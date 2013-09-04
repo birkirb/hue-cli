@@ -18,7 +18,13 @@ module Hue
           # bulb exists (is valid?)
 
           if args.size > 0
-            super(*args)
+            if is_available?(args.first)
+              super(*args)
+            else
+              if _alias = Processors::LightStateAlias.new(args.join(' '))
+                bulb.state = _alias.state
+              end
+            end
           else
             bulb.print_state
           end
@@ -57,6 +63,34 @@ module Hue
         def name(*args)
           name = args.join(' ')
           bulb.name = name
+        end
+
+        def action(*args)
+          bulb.effect = args.join
+        end
+
+        def effect(*args)
+          bulb.effect = args.join
+        end
+
+        def colorloop(*args)
+          bulb.colorloop
+        end
+
+        def clear(*args)
+          case args.first
+          when 'effect'
+            bulb.clear_effect
+          when 'action'
+            bulb.solid
+          else
+            bulb.clear_effect
+            bulb.solid
+          end
+        end
+
+        def dump(*args)
+          puts bulb.state.to_json
         end
 
       end

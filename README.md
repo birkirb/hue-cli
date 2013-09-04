@@ -37,8 +37,15 @@ Once registered, examine the current state of the bridge.
 ```
 $ hue
 Philips Hue
-IP: 196.168.0.1
 Button pressed: false
+Timestamp: 2013-09-02T17:44:10
+Network configuration:
+  IP:      196.168.0.1
+  Gateway: 196.168.0.255
+  Mask:    255.255.255.0
+  DHCP:    true
+  MAC:     00:00:00:00:00:00
+  Proxy:   none:0
 Applications:
   073f2ed95fcbbef2532c751dd404cc9d : hue-cli
 Lights:
@@ -47,24 +54,46 @@ Lights:
   3. Living Corner Lamp - OFF
 ```
 
-## Light state
+## Lights state
 
-Examine the state of one of the lights
+### Examine or operate on all lights.
 
 ```
-$ hue lights 1
+$ hue lights
+1.  Bedroom - Overhead: ON
+    Brightness: 254 (100%)
+    Color: XY=[0.6736, 0.3221], RGB\u2248[255, 60, 40]
+2.  Living Room - Cabinet: OFF
+    Brightness: 142 (56%)
+    Color: XY=[0.674, 0.322], RGB\u2248[255, 60, 40]
+3.  Living Room - Overhead: ON
+    Brightness: 254 (100%)
+    Color: Temperature=2710°K (369 mired), RGB\u2248[255, 166, 87]
+```
+
+### Find new lights.
+
+```
+$ hue lights find
+```
+## Light state
+
+Examine the state of a single light
+
+```
+$ hue light 1
 ```
 
 or just 
 
 ```
 $ hue 1
-Living Overhead: ON
-Brightness: 254 (100%)
-Color: Temperature=2012°K (497 mired), RGB≈[255, 136, 13]
+1.  Bedroom - Overhead: ON
+    Brightness: 254 (100%)
+    Color: XY=[0.6736, 0.3221], RGB\u2248[255, 60, 40]
 ```
 
-## Change Light state
+### Change Light state
 
 Change a single light state with the follow (rather self-explanatory) commands
 
@@ -123,4 +152,19 @@ Brightness: 128 (50%)
 Color: Hue=30000, Saturation=255, RGB≈[0, 255, 190]
 ```
 
-## More coming...
+Set the XY
+
+```
+$ hue 1 color 0.25 0.25
+$ hue 1
+Living Overhead: ON
+Brightness: 128 (50%)
+Color: Hue=30000, Saturation=255, RGB≈[0, 255, 190]
+```
+## Set all lights.
+
+All the single light state commands can be applied to all lights.
+
+```
+$ hue lights brightness 50%
+```

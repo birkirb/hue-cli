@@ -27,10 +27,10 @@ module Hue
 
       def is_available!(method_name)
         is_available?(method_name) or
-          raise Error.new("Action '#{method_name.to_s}' is not available for operation '#{name}'")
+          raise Error.new("Action '#{method_name.to_s}' is not available for operation '#{class_name}'")
       end
 
-      def name
+      def class_name
         self.class.name.gsub(/.*\:\:/, '').downcase
       end
 
@@ -39,11 +39,10 @@ module Hue
       end
 
       def parse_methods
-        @methods = self.class.instance_methods(false).inject(Hash.new(false)) do |hash, method_name|
+        @methods = (self.class.instance_methods - Command.instance_methods).inject(Hash.new(false)) do |hash, method_name|
           hash[method_name] = true
           hash
         end
-        @methods[:execute] = false
       end
 
       def send_method(*args)
