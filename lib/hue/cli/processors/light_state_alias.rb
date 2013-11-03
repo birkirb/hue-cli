@@ -12,7 +12,7 @@ module Hue
 
         def self.read_alias_files
           ALIAS_FILE_PATHS.each do |path|
-            file_path = File.join(path, ALIAS_FILE_NAME)
+            file_path = File.expand_path(File.join(path, ALIAS_FILE_NAME))
             yaml = YAML.load_file(file_path) rescue []
             yaml.each do |name, state|
               @@alias_map[name.to_sym] = state

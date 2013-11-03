@@ -168,3 +168,34 @@ All the single light state commands can be applied to all lights.
 ```
 $ hue lights brightness 50%
 ```
+
+## State aliases.
+
+The following state aliases exist and can be used on all or single lights.
+
+```
+$ hue 1 relax
+$ hue lights energize
+$ hue 1 reading
+$ hue 1 concentrate
+$ hue 1 red
+$ hue 1 blue
+$ hue 1 green
+$ hue 1 white
+$ hue 1 pink
+```
+
+## State Dump
+
+Dump the current state of the light, this will display the current state as a JSON hash.
+This can then be pasted into your local (~/.hue-cli/light_alias.yml) or system (/etc/hue/light_alias.yml) alias files.
+
+```
+$ hue 1 dump
+$ hue lights dump
+```
+Paste into your file like this:
+
+```
+"yellow": {"on":true,"bri":254,"xy":[0.4823,0.4621],"alert":"none","effect":"none"}
+```
