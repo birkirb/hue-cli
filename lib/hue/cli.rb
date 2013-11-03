@@ -15,6 +15,7 @@ module Hue
     class Error < StandardError; end;
 
     ERROR_BRIDGE_CONNECTION_PROBLEM = /execution expired|No route to host/
+    @@retry_count = 0
 
     def self.bridge
       Hue.application
@@ -37,9 +38,15 @@ module Hue
       end
     rescue Hue::Error => err
       if ERROR_BRIDGE_CONNECTION_PROBLEM.match(err.message)
+        @@retry_count += 1
         Hue.logger.warn("Error contacting bridge, verifying IP and trying again.")
         Hue.register_bridges
-        retry
+        if @@retry_count > 2
+          puts "Giving up contacting bridge after #{@@retry_count} retries."
+          bridge.print_config
+        else
+          retry
+        end
       else
         puts err.message
       end
