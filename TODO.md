@@ -4,5 +4,8 @@
 * Smarter switching (check local network, look for a match, or default to the match).
 * Pattern matcher / Processor for shorthands (hue register, hue 1 etc...)
 * Multi action command processor (hue 1 --color 6500 --brightness 50 --on)
+* Delete applications.
+* Print unreachable state.
+* Add localhost to registered application hash (hue-cli@localhost).
 * Groups
 * Schedules
