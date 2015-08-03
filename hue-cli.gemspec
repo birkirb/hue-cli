@@ -3,7 +3,7 @@ $:.push File.expand_path("../lib", __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = "hue-cli"
-  s.version     = '0.1.2'
+  s.version     = '0.1.3'
   s.authors     = ["Birkir A. Barkarson", ""]
   s.email       = ["birkirb@stoicviking.net"]
   s.homepage    = "https://github.com/birkirb/hue-lib"
@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_runtime_dependency("json")
-  s.add_runtime_dependency("hue-lib", '>= 0.7.2')
+  s.add_runtime_dependency("hue-lib", '>= 0.7.3')
   s.add_development_dependency("rspec", '>= 2.6.0')
   s.add_development_dependency("mocha", '>= 0.9.0')
   s.add_development_dependency("webmock", '>= 1.8.0')
