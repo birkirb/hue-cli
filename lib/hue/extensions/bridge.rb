@@ -31,14 +31,14 @@ module Hue
       puts "Applications:"
       indent do
         config['whitelist'].each do |key, values|
-          puts "#{key} : #{values['name']}"
+          puts "#{'%-40s' % key} : #{values['name']}"
         end
       end
 
       puts "Lights:"
       indent do
         state['lights'].each do |key, values|
-          puts "  #{key}. #{values['name']} - #{values['state']['on'] ? 'ON' : 'OFF'}"
+          puts "  #{'%2.3s' % key}. #{'%-30s' % values['name']} \t #{values['state']['on'] ? 'ON' : 'OFF'} \t #{values['modelid']} - #{values['type']}"
         end
       end
     end
