@@ -8,7 +8,7 @@ module Hue
       spaces = 4
       puts "#{self.id}.".ljust(spaces) + "#{self.name}: #{self.on? ? 'ON' : 'OFF'}"
       indent(spaces) do
-        puts "Brightness: #{self.brightness} (#{(self.brightness_percent).to_i}%)"
+        puts "Brightness: #{self.brightness} (#{(self.brightness_percent).to_i}%)" if self.brightness
         puts "Color: #{self.color}, #{self.color.to_rgb}" if self.state["hue"]
         transitory_state = [
           (self.transition_time > 0 ? "Transition time: #{self.transition_time} sec" : nil),
